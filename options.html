@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kata Warrior</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container">
+		<h1> Kata Configuration </h1>
+		<div class="alert alert-info">
+			TODO: xD You can't edit your options if your not in vegete mode. <a href="http://www.codewars.com/dashboard" class="btn btn-success">Fight for it!</a>
+		</div>
+		<div class="row">
+			<div class="col-md-6"> 
+				<div class="well">
+					Status: <span class="label label-primary">Coding</span>
+					<hr/>
+					<div class="input-group">
+						<span class="input-group-addon">Break time after completing a kata </span>
+						<input id="breakTimeInput" type="number" class="form-control" placeholder="Break time">
+						<span class="input-group-addon" id="basic-addon2">minutes</span>
+					</div>
+					<br/>
+					<input class="form-control" type="text" placeholder="Write your warrior username" id="username"></input>
+					<br/>
+					<div id="warriorBody">
+						
+					</div>
+					<div id="invalidUserName" class="alert alert-info"> Please add a valid codewars' username</div>
+					
+				</div>				
+			</div>
+			<div class="col-md-6"> 
+				<div class="well">
+					Distractions
+					<hr/>
+					<textarea rows="9" class="form-control" id="siteList"></textarea>
+				</div>				
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="options.js"></script>
+</body>
+</html>
