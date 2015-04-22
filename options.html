@@ -9,14 +9,16 @@
 	<div class="container">
 		<h1> Kata Configuration </h1>
 		<div class="alert alert-info">
-			TODO: xD You can't edit your options if you're not in break mode. <a href="http://www.codewars.com/dashboard" class="btn btn-success">Fight for it!</a>
+			<span data-mode="coding">We know that your flesh is weak while your spirit wishes to keep fighting, that's why you can't change the configuration while you're in coding mode! </span>
+			<span data-mode="break">You can edit your configuration in your brake time. </span>
+			 <a href="http://www.codewars.com/dashboard" class="btn btn-success">Train!</a>
 		</div>
 		<div class="row">
 			<div class="col-md-6"> 
 				<div class="well">
 					<h4>Status:
-					<span id="codingSpan" class="label label-primary">Coding</span>
-					<span id="breakSpan" class="label label-info">Break Time</span>
+					<span data-mode="coding" class="label label-primary">Coding</span>
+					<span data-mode="break" class="label label-info">Break Time</span>
 					</h4>
 					<hr/>
 					<div class="input-group">

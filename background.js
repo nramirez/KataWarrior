@@ -27,8 +27,7 @@ function SaveConfig(config) {
 	return config;
 };
 var KataTrack = function(tab) {
-	if(Config.warrior && !IsUrlAllowed(tab.url))
-	{
+	if (Config.warrior && !IsUrlAllowed(tab.url)) {
 		GetUserInfo(Config.warrior.username, 
 			function(data) {
 				Config.warrior = data;
@@ -38,33 +37,27 @@ var KataTrack = function(tab) {
 				}
 
 			}, 
-			function(errorMessage)
-			{
+			function(errorMessage) {
 			//TODO: Print Message.
 			PushNotification(errorMessage, true);
-
 		});
-		
-	}
+	};
 };
 var IsUrlAllowed = function(url) {
 	var position = Config.sites.length;
-	while(position--)
-	{
-		if(url.indexOf(Config.sites[position]) > -1)
-		{
+	while (position--) {
+		if (url.indexOf(Config.sites[position]) > -1) {
 			return false;
-		}
-	}
+		};
+	};
 	return true;
 };
 var IsBreakTime = function() {
-	if(!Config.warrior) return true; //if warrior hasn't been configure yet. 
+	if (!Config.warrior) return true; //if warrior hasn't been configure yet. 
 	//A warrior that solves katas, deserves breaks. :D 
-	if(Config.warrior.codeChallenges.totalCompleted > Config.lastTotalCompleted)
-	{
+	if (Config.warrior.codeChallenges.totalCompleted > Config.lastTotalCompleted) {
 		UpdateUserBreak();
-	}
+	};
 	var endOfTheBreak = new Date(Config.lastBreak.getTime() + Config.breakTime*60000);
 	return endOfTheBreak > new Date();
 };
