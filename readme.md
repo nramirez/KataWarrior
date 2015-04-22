@@ -4,7 +4,7 @@ This is a chrome extension to avoid distractions.
 
 I'm a big fan of Codewars. It helps me improve my programming knowledge, and stay sharp on things I already know and don't want to forget. On the other hand, I also get easily distracted by social media, and news sites such as reddit.
 
-Kata Warrior helps avoiding these automatic fb/twitter/reddit interactions by forcing the user to complete a  kata and then have access to a period of free time.
+Kata Warrior helps avoiding these automatic fb/twitter/reddit interactions by forcing the user to complete a kata to have access to a period of free time.
 
 A big part of my inspirations came from Strict workflow, an awesome extension that uses the  pomodoro technique.
 
@@ -22,4 +22,4 @@ Check out how to load the extension in the [official documentation site](https:/
 
 If you have any suggestion don't hesitate and let me know. Happy Coding!!
 
-Note: This won't stop you from wasting your time, but It will remind you that a real warrior first get the job done and then take the rest that deserves. :sunglasses:
+Note: This won't stop you from wasting your time, but It will remind you that a real warrior first gets the job done and then takes the rest that he deserves. :sunglasses:
