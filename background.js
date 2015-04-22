@@ -1,21 +1,17 @@
 var DefaultConfig = {
 	sites:[
 	'facebook.com',
+	'chess.com'
 	'youtube.com',
 	'twitter.com',
 	'tumblr.com',
-	'pinterest.com',
-	'myspace.com',
-	'livejournal.com',
-	'digg.com',
+	'instagram.com',
+	'messenger.com',
+	'netflix.com',
 	'stumbleupon.com',
-	'reddit.com',
-	'kongregate.com',
-	'newgrounds.com',
-	'addictinggames.com',
-	'hulu.com'
+	'reddit.com'
 	],
-	breakTime: 3,
+	breakTime: 15,
 	lastTotalCompleted : 0,
 };
 var Config = LoadConfig();
@@ -25,7 +21,6 @@ function LoadConfig () {
 	var config = localStorage['kataConfig'];
 	return config === undefined ? SaveConfig(DefaultConfig) : JSON.parse(config);
 };
-
 function SaveConfig(config) {
 	console.log('Saving Date: ' + config.lastBreak); 
 	localStorage['kataConfig'] = JSON.stringify(config);
@@ -64,6 +59,7 @@ var IsUrlAllowed = function(url) {
 	return true;
 };
 var IsBreakTime = function() {
+	if(!Config.warrior) return true; //if warrior hasn't been configure yet. 
 	//A warrior that solves katas, deserves breaks. :D 
 	if(Config.warrior.codeChallenges.totalCompleted > Config.lastTotalCompleted)
 	{

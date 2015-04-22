@@ -6,7 +6,14 @@ function InitialConfiguration()
 	e('breakTimeInput').value = background.Config.breakTime;	
 	e('siteList').value = background.Config.sites.join('\n');
 	e('username').addEventListener('keydown', userKeyDown);
-	e('breakTimeInput').addEventListener('keydown', setBreakTime);
+	e('breakTimeInput').addEventListener('change', setBreakTime);
+	e('siteList').addEventListener('blur', updateSiteList);
+	if(background.IsBreakTime())
+	{
+		e('codingSpan').classList.add('hidden');
+	}else{
+		e('breakSpan').classList.add('hidden');
+	}
 	UserConfig();
 };
 function UserConfig () {
@@ -30,10 +37,10 @@ function e(inputName)
 function userTemplate(warrior)
 {
 	return warrior.ranks.overall.name  + ', ' + warrior.name + 
-	'<br/> Clan: ' + warrior.clan + 
-	'<br/> Skills: ' + warrior.skills.join(', ') +
-	'<br/> Honor: ' + warrior.honor + ' Leader Position: ' + warrior.leaderboardPosition +
-	'<br/> Total Katas: '+ warrior.codeChallenges.totalCompleted;
+	'<br/> <strong>Clan:</strong> ' + warrior.clan + 
+	'<br/> <strong>Skills:</strong> ' + warrior.skills.join(', ') +
+	'<br/> <strong>Honor:</strong> ' + warrior.honor + ' <strong>Leader Position:</strong> ' + warrior.leaderboardPosition +
+	'<br/> <strong>Total Katas:</strong> '+ warrior.codeChallenges.totalCompleted;
 };
 function userKeyDown (event) {
 	if (event.keyCode == 13)
@@ -46,18 +53,20 @@ function userKeyDown (event) {
 			}, function (error){
 				alert(error);
 			});
-
 	}
 }; 
-function setBreakTime (event) {
-	if (event.keyCode == 13)
-	{
-		var breakInput = e('breakTimeInput');	
-		if(!isNaN(parseFloat(breakInput.value)) && isFinite(breakInput.value)){
-			background.Config.breakTime = breakInput.value;
-			background.SaveConfig(background.Config);
-		} else {
-			breakInput.value = background.Config.breakTime;
-		}
+function setBreakTime () {
+	var breakInput = e('breakTimeInput');
+	console.log(breakInput.value);
+	if(!isNaN(parseFloat(breakInput.value)) && isFinite(breakInput.value)){
+		background.Config.breakTime = breakInput.value;
+		background.SaveConfig(background.Config);
+	} else {
+		breakInput.value = background.Config.breakTime;
 	}
+};
+function updateSiteList () {
+	var breakInput = e('siteList');	
+	background.Config.sites = breakInput.value.split('\n').filter(function(n) { return n.length > 3; });//Trivial way to remove empty spaces.
+	background.SaveConfig(background.Config);
 };

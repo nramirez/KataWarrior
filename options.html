@@ -9,12 +9,15 @@
 	<div class="container">
 		<h1> Kata Configuration </h1>
 		<div class="alert alert-info">
-			TODO: xD You can't edit your options if your not in vegete mode. <a href="http://www.codewars.com/dashboard" class="btn btn-success">Fight for it!</a>
+			TODO: xD You can't edit your options if you're not in break mode. <a href="http://www.codewars.com/dashboard" class="btn btn-success">Fight for it!</a>
 		</div>
 		<div class="row">
 			<div class="col-md-6"> 
 				<div class="well">
-					Status: <span class="label label-primary">Coding</span>
+					<h4>Status:
+					<span id="codingSpan" class="label label-primary">Coding</span>
+					<span id="breakSpan" class="label label-info">Break Time</span>
+					</h4>
 					<hr/>
 					<div class="input-group">
 						<span class="input-group-addon">Break time after completing a kata </span>
@@ -33,7 +36,7 @@
 			</div>
 			<div class="col-md-6"> 
 				<div class="well">
-					Distractions
+					<h4> Distractions</h4>
 					<hr/>
 					<textarea rows="9" class="form-control" id="siteList"></textarea>
 				</div>				
