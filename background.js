@@ -1,7 +1,7 @@
 var DefaultConfig = {
 	sites:[
 	'facebook.com',
-	'chess.com'
+	'chess.com',
 	'youtube.com',
 	'twitter.com',
 	'tumblr.com',
