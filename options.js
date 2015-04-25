@@ -15,7 +15,7 @@ function initialConfiguration() {
 	userConfig();
 };
 function userConfig () {
-	if(background.Config.warrior) {
+	if(background.IsUserConfigured()) {
 		e('username').value = background.Config.warrior.username;
 		e('warriorBody').innerHTML = userTemplate(background.Config.warrior);
 		e('invalidUserName').classList.add('hidden');
@@ -38,6 +38,7 @@ function userKeyDown (event) {
 		background.GetUserInfo(e('username').value,
 			function(data){
 				background.Config.warrior = data;
+				background.UpdateUserBreak();
 				background.SaveConfig(background.Config.warrior);
 				userConfig();
 			}, function (error){
@@ -47,7 +48,7 @@ function userKeyDown (event) {
 }; 
 function setBreakTime () {
 	var breakInput = e('breakTimeInput');
-	if(!isNaN(parseFloat(breakInput.value)) && isFinite(breakInput.value)){
+	if (!isNaN(parseFloat(breakInput.value)) && isFinite(breakInput.value)){
 		background.Config.breakTime = breakInput.value;
 		background.SaveConfig(background.Config);
 	} else {
@@ -72,11 +73,22 @@ function breakMode() {
 	e('username').addEventListener('keydown', userKeyDown);
 	e('breakTimeInput').addEventListener('change', setBreakTime);
 	e('siteList').addEventListener('blur', updateSiteList);
+	e('codeModeBtn').addEventListener('click', activateCodingMode);
 };
 function hideElementsByMode(mode) {
 	var elements = document.querySelectorAll('[data-mode=' + mode + ']');
 	var i = elements.length;
 	while (i--) {
 		elements[i].classList.add('hidden');
+	}
+};
+function activateCodingMode() {
+	if (background.IsUserConfigured()) {
+		background.ActivateCodingMode();
+		location.reload();
+	} else {
+		alert("Please add your codewars' username first");
+		//TODO: try to user chrome extension to create this alert, if it's posible to push it to the options tab
+		//background.PushNotification("You should configure your user first");
 	}
 };

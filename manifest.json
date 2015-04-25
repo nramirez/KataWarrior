@@ -12,7 +12,8 @@
 	},
 	"permissions" :[
 		"https://www.codewars.com/api/v1/users/",
-		"tabs"
+		"tabs",
+		"notifications"
 	]
 
 }

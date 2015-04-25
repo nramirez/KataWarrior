@@ -27,7 +27,7 @@ function SaveConfig(config) {
 	return config;
 };
 var KataTrack = function(tab) {
-	if (Config.warrior && !IsUrlAllowed(tab.url)) {
+	if (IsUserConfigured() && !IsUrlAllowed(tab.url)) {
 		GetUserInfo(Config.warrior.username, 
 			function(data) {
 				Config.warrior = data;
@@ -53,7 +53,7 @@ var IsUrlAllowed = function(url) {
 	return true;
 };
 var IsBreakTime = function() {
-	if (!Config.warrior) return true; //if warrior hasn't been configure yet. 
+	if (!IsUserConfigured()) return true; //if warrior hasn't been configure yet. 
 	//A warrior that solves katas, deserves breaks. :D 
 	if (Config.warrior.codeChallenges.totalCompleted > Config.lastTotalCompleted) {
 		UpdateUserBreak();
@@ -65,6 +65,14 @@ var UpdateUserBreak = function() {
 	Config.lastTotalCompleted = Config.warrior.codeChallenges.totalCompleted;
 	Config.lastBreak = new Date();
 	SaveConfig(Config);
+};
+var ActivateCodingMode = function () {
+	//Let's set the lastBreak a time before the max break time
+	Config.lastBreak =  new Date(Config.lastBreak.getTime() - Config.breakTime*60000);
+	SaveConfig(Config);
+};
+var IsUserConfigured = function (){
+	return Config.warrior;
 };
 var GetUserInfo = function(userName, successCallback, errorCallback) {
 	var xhr =  new XMLHttpRequest();
