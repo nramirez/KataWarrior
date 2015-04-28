@@ -103,3 +103,7 @@ var PushNotification = function(message, isError){
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 	KataTrack(tab);
 });
+chrome.browserAction.onClicked.addListener(function (tab) {
+	//Redirect to options html when the extension button has been clicked.
+  chrome.tabs.update(tab.id, {url : "options.html"});
+});
