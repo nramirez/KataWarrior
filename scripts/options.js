@@ -88,7 +88,5 @@ function activateCodingMode() {
 		location.reload();
 	} else {
 		alert("Please add your codewars' username first");
-		//TODO: try to user chrome extension to create this alert, if it's posible to push it to the options tab
-		//background.PushNotification("You should configure your user first");
 	}
 };

@@ -14,6 +14,7 @@ var DefaultConfig = {
 	breakTime: 15,
 	lastTotalCompleted : 0,
 };
+
 var Config = LoadConfig();
 var KataUserApi = "https://www.codewars.com/api/v1/users/";
 var DojoUrl = "http://www.codewars.com/dashboard";
@@ -34,11 +35,11 @@ var KataTrack = function(tab) {
 				if(!IsBreakTime())
 				{
 					chrome.tabs.update(tab.id, {url : DojoUrl});
+					PushNotification("You nee to train to keep your skills on shape!");
 				}
 
 			}, 
 			function(errorMessage) {
-			//TODO: Print Message.
 			PushNotification(errorMessage, true);
 		});
 	};
@@ -96,14 +97,14 @@ var PushNotification = function(message, isError){
 		type: "basic",
 		title: isError ? "Something is wrong!" : "Hey! ",
 		message: message,
-		iconUrl: "icon.png"
+		iconUrl: '/img/icon-48.png',
 	};
-	chrome.notifications.create('',opt);
+	chrome.notifications.create('', opt, function(id) { console.log("Last error:", chrome.runtime.lastError ); });
 };
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 	KataTrack(tab);
 });
 chrome.browserAction.onClicked.addListener(function (tab) {
 	//Redirect to options html when the extension button has been clicked.
-  chrome.tabs.update(tab.id, {url : "options.html"});
+  chrome.tabs.update(tab.id, {url : "/views/options.html"});
 });
