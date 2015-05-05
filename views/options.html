@@ -2,46 +2,69 @@
 <html>
 <head>
 	<title>Kata Warrior</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 
 	<div class="container">
-		<h1> Kata Configuration </h1>
+		<h1>Settings </h1>
 		<div class="alert alert-info">
-			<span data-mode="coding">We know that your flesh is weak while your spirit wishes to keep fighting, that's why you can't change the configuration while you're in coding mode! </span>
-			<span data-mode="break">You can edit your configuration in your brake time. </span>
-			 <a href="http://www.codewars.com/dashboard" class="btn btn-success">Train!</a>
+			<span data-mode="coding">We know that your flesh is weak while your spirit wishes to keep fighting, that's why you can't change the settings while you're in coding mode! </span>
+			<span data-mode="break">You can edit your settings in your brake time. </span>
+			<a href="http://www.codewars.com/dashboard" class="btn btn-success">Train!</a>
 		</div>
 		<div class="row">
 			<div class="col-md-6"> 
 				<div class="well">
 					<h4>Status:
-					<span data-mode="coding" class="label label-primary">Coding</span>
-					<span data-mode="break" class="label label-info">Break Time</span>
-					<button data-mode="break" id="codeModeBtn" class="btn btn-primary pull-right">Change to Ninja Mode!</button>
+						<span data-mode="coding" class="label label-primary">Coding</span>
+						<span data-mode="break" class="label label-info">Break Time</span>
+						<button data-mode="break" id="codeModeBtn" class="btn btn-primary pull-right">Change to Ninja Mode!</button>
 					</h4>
 					<hr/>
-					<div class="input-group">
-						<span class="input-group-addon">Break time after completing a kata </span>
-						<input id="breakTimeInput" type="number" class="form-control" placeholder="Break time">
-						<span class="input-group-addon" id="basic-addon2">minutes</span>
-					</div>
-					<br/>
-					<input class="form-control" type="text" placeholder="Write your warrior username" id="username"></input>
-					<br/>
-					<div id="warriorBody">
-						
-					</div>
-					<div id="invalidUserName" class="alert alert-info"> Please add a valid codewars' username</div>
-					
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-4 text-right">Training : </label>
+							<div class="col-sm-6">
+								<select id="trainingTimeInput" type="number" class="form-control">
+									<option value="24">All the time</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 text-right">Time : </label>
+							<div class="col-sm-6">
+								<div class="input-group">
+									<input id="trainingPeriodInput" type="number" class="form-control" placeholder="Practice Time">
+									<span class="input-group-addon">minutes</span>
+								</div>
+							</div>	
+							</div>
+						<div class="form-group">
+						<label for="" class="col-sm-4 text-right">Break : </label>
+							<div class="col-sm-6">
+								<div class="input-group">
+									<input id="breakTimeInput" type="number" class="form-control" placeholder="Break time">
+									<span class="input-group-addon">minutes</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+						<label for="" class="col-sm-4 text-right">Username : </label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text" placeholder="Write your Codewars username" id="username"></input>
+							</div>
+						</div>
+					</form>
+					<div id="warriorBody" class="col-sm-offset-2"></div>
+					<div id="invalidUserName" class="alert alert-info"> Please add a valid Codewars username</div>
 				</div>				
 			</div>
 			<div class="col-md-6"> 
 				<div class="well">
 					<h4> Distractions</h4>
 					<hr/>
-					<textarea rows="9" class="form-control" id="siteList"></textarea>
+					<textarea rows="12" class="form-control" id="siteList"></textarea>
 				</div>				
 
 			</div>

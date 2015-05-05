@@ -11,7 +11,9 @@ var DefaultConfig = {
 	'stumbleupon.com',
 	'reddit.com'
 	],
+	trainingTime: '24', 
 	breakTime: 15,
+	trainingPeriod: 60,
 	lastTotalCompleted : 0,
 };
 
@@ -23,7 +25,6 @@ function LoadConfig () {
 	return config === undefined ? SaveConfig(DefaultConfig) : JSON.parse(config);
 };
 function SaveConfig(config) {
-	console.log('Saving Date: ' + config.lastBreak); 
 	localStorage['kataConfig'] = JSON.stringify(config);
 	return config;
 };
