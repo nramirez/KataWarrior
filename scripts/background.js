@@ -16,7 +16,6 @@ var DefaultConfig = {
 	trainingPeriod: 60,
 	lastTotalCompleted : 0,
 };
-
 var Config = LoadConfig();
 var KataUserApi = "https://www.codewars.com/api/v1/users/";
 var DojoUrl = "http://www.codewars.com/dashboard";
@@ -41,8 +40,8 @@ var KataTrack = function(tab) {
 
 			}, 
 			function(errorMessage) {
-			PushNotification(errorMessage, true);
-		});
+				PushNotification(errorMessage, true);
+			});
 	};
 };
 var IsUrlAllowed = function(url) {
@@ -55,7 +54,8 @@ var IsUrlAllowed = function(url) {
 	return true;
 };
 var IsBreakTime = function() {
-	if (!IsUserConfigured()) return true; //if warrior hasn't been configure yet. 
+	if (!IsUserConfigured() || !IsUserTrainingTime()) return true; //if warrior hasn't been configure yet. 
+
 	//A warrior that solves katas, deserves breaks. :D 
 	if (Config.warrior.codeChallenges.totalCompleted > Config.lastTotalCompleted) {
 		UpdateUserBreak();
@@ -75,6 +75,15 @@ var ActivateCodingMode = function () {
 };
 var IsUserConfigured = function (){
 	return Config.warrior;
+};
+var IsUserTrainingTime = function() {
+	if(Config.trainingTime === '24') return true;
+	var trainingTime = new Date()
+	trainingTime.setHours(parseInt(Config.trainingTime));
+	trainingTime.setMinutes(0);
+	var endOfThePractice = new Date(trainingTime.getTime() + Config.trainingPeriod*60000);
+	var now = new Date();
+	return trainingTime < now && now < endOfThePractice;
 };
 var GetUserInfo = function(userName, successCallback, errorCallback) {
 	var xhr =  new XMLHttpRequest();
@@ -107,5 +116,5 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 });
 chrome.browserAction.onClicked.addListener(function (tab) {
 	//Redirect to options html when the extension button has been clicked.
-  chrome.tabs.update(tab.id, {url : "/views/options.html"});
+	chrome.tabs.update(tab.id, {url : "/views/options.html"});
 });

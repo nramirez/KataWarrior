@@ -101,8 +101,13 @@ function hideElementsByMode(mode) {
 };
 function activateCodingMode() {
 	if (background.IsUserConfigured()) {
-		background.ActivateCodingMode();
-		location.reload();
+		if(background.IsUserTrainingTime()){
+			background.ActivateCodingMode();
+			location.reload();
+		} else {
+			alert("You are out of time! Your training time is at " + e('trainingTimeInput').value + ":00 o'clock for " + e('trainingPeriodInput').value + " minutes");
+		}
+		
 	} else {
 		alert("Please add your username first");
 	}
